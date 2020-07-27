@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">english</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">Learn</string>
+    <string name="second_fragment_label">Statistics</string>
+    <string name="next">Go Statistics</string>
+    <string name="previous">Go Learn</string>
+</resources>
