@@ -24,9 +24,6 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment)
         appBarConfiguration = AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController, appBarConfiguration)
-
-        fabNext.setOnClickListener { viewModel.goNext() }
-        fabPre.setOnClickListener { viewModel.goBack() }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

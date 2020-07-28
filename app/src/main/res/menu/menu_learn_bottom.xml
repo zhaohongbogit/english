@@ -13,11 +13,6 @@
         android:title="Clear"
         app:showAsAction="always" />
     <item
-        android:id="@+id/bottomFavorite"
-        android:icon="@android:drawable/btn_star_big_on"
-        android:title="Favorite"
-        app:showAsAction="always" />
-    <item
         android:id="@+id/bottomSave"
         android:icon="@android:drawable/ic_menu_save"
         android:title="Save"

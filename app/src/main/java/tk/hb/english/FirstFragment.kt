@@ -51,6 +51,8 @@ class FirstFragment : Fragment() {
             }
             true
         }
+        fabNext.setOnClickListener { viewModel.goNext() }
+        fabPre.setOnClickListener { viewModel.goBack() }
     }
 
     override fun onStart() {
