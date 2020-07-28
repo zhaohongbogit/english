@@ -19,10 +19,10 @@ class WordViewModel : ViewModel() {
     fun resetWord() {
         Thread(Runnable {
             thisIndex++
-            var data = HbDataBase.getDb()?.wordDao()?.queryWord(thisIndex)
+            var data = HbDataBase.instance.wordDao()?.queryWord(thisIndex)
             if (data == null) {
                 thisIndex = 1
-                data = HbDataBase.getDb()?.wordDao()?.queryWord(thisIndex)
+                data = HbDataBase.instance.wordDao()?.queryWord(thisIndex)
             }
             Handler(Looper.getMainLooper()).post {
                 showWord.postValue(data)

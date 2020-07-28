@@ -16,23 +16,13 @@ abstract class HbDataBase : RoomDatabase() {
 
     companion object {
 
-        val DB_NAME = "english.db"
+        private val DB_NAME = "english.db"
 
-        @Volatile
-        private var INSTANCE: HbDataBase? = null
-
-        open fun getDb(): HbDataBase? {
-            if (INSTANCE == null) {
-                synchronized(HbDataBase::class.java) {
-                    if (INSTANCE == null) {
-                        INSTANCE = Room.databaseBuilder(
-                            MyApplication.getAppContext(),
-                            HbDataBase::class.java, DB_NAME
-                        ).build()
-                    }
-                }
-            }
-            return INSTANCE
+        val instance: HbDataBase by lazy(LazyThreadSafetyMode.SYNCHRONIZED) {
+            Room.databaseBuilder(
+                MyApplication.getAppContext(),
+                HbDataBase::class.java, DB_NAME
+            ).createFromAsset(DB_NAME).build()
         }
     }
 
