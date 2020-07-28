@@ -41,7 +41,8 @@ class FirstFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        viewModel.getWord().observe(this, Observer { it ->
+        viewModel.getWord().observe(this, Observer {
+            textView4.text = it.id.toString()
             textView.text = it.content
             textView2.text = it.pronunciation
             textView3.text = it.explanation
