@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
         appBarConfiguration = AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController, appBarConfiguration)
 
-        fabNext.setOnClickListener { viewModel.resetWord() }
+        fabNext.setOnClickListener { viewModel.goNext() }
         fabPre.setOnClickListener { viewModel.goBack() }
     }
 

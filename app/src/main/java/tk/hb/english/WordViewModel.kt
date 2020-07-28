@@ -29,35 +29,43 @@ class WordViewModel : ViewModel() {
     private var showWord: MutableLiveData<WordBean> = MutableLiveData()
 
     fun goBack() {
-        thisIndex -= 2
-        resetWord()
+        thisIndex--
+        resetWord(-1)
     }
 
-    fun resetWord() {
+    fun goNext() {
+        thisIndex++
+        resetWord(1)
+    }
+
+    private fun resetWord(type: Int) {
         Thread(Runnable {
             if (thisIndex < 0) {
                 thisIndex = 0
             }
-            thisIndex++
             var data = HbDataBase.instance.wordDao()?.queryWord(thisIndex)
             if (data == null) {
                 thisIndex = 1
                 data = HbDataBase.instance.wordDao()?.queryWord(thisIndex)
             } else if (data.state == -1) {
                 Handler(Looper.getMainLooper()).post {
-                    resetWord()
+                    if (type < 0) {
+                        goBack()
+                    } else {
+                        goNext()
+                    }
                 }
-            }
-            Handler(Looper.getMainLooper()).post {
-                showWord.postValue(data)
+            } else {
+                Handler(Looper.getMainLooper()).post {
+                    showWord.postValue(data)
+                }
             }
         }).start()
     }
 
     fun getWord(): MutableLiveData<WordBean> {
         if (showWord.value == null) {
-            thisIndex--
-            resetWord()
+            resetWord(1)
         }
         return showWord
     }
@@ -82,7 +90,7 @@ class WordViewModel : ViewModel() {
             wordBean.state = -1
             HbDataBase.instance.wordDao()?.updateWord(wordBean)
             Handler(Looper.getMainLooper()).post {
-                resetWord()
+                goNext()
             }
         }).start()
     }
