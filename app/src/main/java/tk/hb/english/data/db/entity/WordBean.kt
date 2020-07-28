@@ -1,6 +1,5 @@
 package tk.hb.english.data.db.entity
 
-import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
@@ -12,9 +11,9 @@ data class WordBean(
     @PrimaryKey
     val id: Int,
     val content: String,
-    val pronunciation: String,
-    val explanation: String,
-    val sentence: String,
+    val pronunciation: String?,
+    val explanation: String?,
+    val sentence: String?,
     val favorite: Int,
     val state: Int
 )
