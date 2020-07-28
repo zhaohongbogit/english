@@ -28,6 +28,11 @@ class WordViewModel : ViewModel() {
 
     private var showWord: MutableLiveData<WordBean> = MutableLiveData()
 
+    fun goBack() {
+        thisIndex -= 2
+        resetWord()
+    }
+
     fun resetWord() {
         Thread(Runnable {
             thisIndex++

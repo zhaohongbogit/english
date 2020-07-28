@@ -9,7 +9,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
-import com.google.android.material.floatingactionbutton.FloatingActionButton
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -25,9 +25,8 @@ class MainActivity : AppCompatActivity() {
         appBarConfiguration = AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController, appBarConfiguration)
 
-        findViewById<FloatingActionButton>(R.id.fab).setOnClickListener {
-            viewModel.resetWord()
-        }
+        fabNext.setOnClickListener { viewModel.resetWord() }
+        fabPre.setOnClickListener { viewModel.goBack() }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
