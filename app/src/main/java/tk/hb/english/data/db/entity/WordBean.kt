@@ -13,7 +13,7 @@ data class WordBean(
     val content: String,
     val pronunciation: String?,
     val explanation: String?,
-    val sentence: String?,
+    var sentence: String?,
     val favorite: Int,
     val state: Int
 )

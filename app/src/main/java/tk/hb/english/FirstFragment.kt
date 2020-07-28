@@ -52,6 +52,7 @@ class FirstFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
+        viewModel.restoreIndex() //恢复上次阅读记录
         viewModel.getWord().observe(this, Observer {
             textView4.text = it.id.toString()
             textView.text = it.content
@@ -59,5 +60,11 @@ class FirstFragment : Fragment() {
             textView3.text = it.explanation
             editTextTextMultiLine.setText(it.sentence)
         })
+    }
+
+    override fun onDestroy() {
+        //退出前先保存阅读记录
+        viewModel.saveIndex()
+        super.onDestroy()
     }
 }
