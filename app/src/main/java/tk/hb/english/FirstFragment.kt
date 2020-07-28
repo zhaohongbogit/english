@@ -51,6 +51,9 @@ class FirstFragment : Fragment() {
             }
             true
         }
+        bottomAppBar.setNavigationOnClickListener {
+            //TODO 侧边栏
+        }
         fabNext.setOnClickListener { viewModel.goNext() }
         fabPre.setOnClickListener { viewModel.goBack() }
     }
