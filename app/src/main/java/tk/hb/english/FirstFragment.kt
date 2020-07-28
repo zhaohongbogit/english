@@ -59,9 +59,9 @@ class FirstFragment : Fragment() {
         })
     }
 
-    override fun onDestroy() {
+    override fun onPause() {
         //退出前先保存阅读记录
         viewModel.saveIndex()
-        super.onDestroy()
+        super.onPause()
     }
 }

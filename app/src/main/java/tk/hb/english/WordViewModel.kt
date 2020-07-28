@@ -35,6 +35,9 @@ class WordViewModel : ViewModel() {
 
     fun resetWord() {
         Thread(Runnable {
+            if (thisIndex < 0) {
+                thisIndex = 0
+            }
             thisIndex++
             var data = HbDataBase.instance.wordDao()?.queryWord(thisIndex)
             if (data == null) {
