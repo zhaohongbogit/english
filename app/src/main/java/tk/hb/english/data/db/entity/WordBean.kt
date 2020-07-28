@@ -15,5 +15,5 @@ data class WordBean(
     val explanation: String?,
     var sentence: String?,
     val favorite: Int,
-    val state: Int
+    var state: Int
 )

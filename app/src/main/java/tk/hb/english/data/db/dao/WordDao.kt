@@ -1,6 +1,7 @@
 package tk.hb.english.data.db.dao
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Query
 import androidx.room.Update
 import tk.hb.english.data.db.entity.WordBean
@@ -17,6 +18,12 @@ interface WordDao {
     @Query("SELECT * FROM WORD WHERE id=:id")
     fun queryWord(id: Int): WordBean
 
+    @Query("UPDATE WORD SET STATE=0")
+    fun updateStateAll()
+
     @Update
-    fun updateContent(wordBean: WordBean)
+    fun updateWord(wordBean: WordBean)
+
+    @Delete
+    fun deleteWord(wordBean: WordBean)
 }

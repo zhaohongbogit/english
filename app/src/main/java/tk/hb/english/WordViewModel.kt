@@ -43,6 +43,10 @@ class WordViewModel : ViewModel() {
             if (data == null) {
                 thisIndex = 1
                 data = HbDataBase.instance.wordDao()?.queryWord(thisIndex)
+            } else if (data.state == -1) {
+                Handler(Looper.getMainLooper()).post {
+                    resetWord()
+                }
             }
             Handler(Looper.getMainLooper()).post {
                 showWord.postValue(data)
@@ -65,7 +69,32 @@ class WordViewModel : ViewModel() {
         Thread(Runnable {
             var wordBean: WordBean = showWord.value as WordBean
             wordBean.sentence = content
-            HbDataBase.instance.wordDao()?.updateContent(wordBean)
+            HbDataBase.instance.wordDao()?.updateWord(wordBean)
+        }).start()
+    }
+
+    /**
+     * 删除当前词
+     */
+    fun delWord() {
+        Thread(Runnable {
+            var wordBean: WordBean = showWord.value as WordBean
+            wordBean.state = -1
+            HbDataBase.instance.wordDao()?.updateWord(wordBean)
+            Handler(Looper.getMainLooper()).post {
+                resetWord()
+            }
+        }).start()
+    }
+
+    /**
+     * 恢复所有词的初始化
+     */
+    fun restoreWord() {
+        Thread(Runnable {
+            HbDataBase.instance.wordDao()?.updateStateAll()
+            thisIndex = 2
+            goBack()
         }).start()
     }
 

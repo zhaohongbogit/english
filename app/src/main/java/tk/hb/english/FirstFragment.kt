@@ -35,12 +35,18 @@ class FirstFragment : Fragment() {
         //底部菜单
         bottomAppBar.setOnMenuItemClickListener {
             when (it.itemId) {
-                R.id.bottomGo -> {
-                    findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+                R.id.bottomDel -> {
+                    viewModel.delWord()
+                }
+                R.id.bottomClear -> {
+                    viewModel.restoreWord()
                 }
                 R.id.bottomSave -> {
                     viewModel.saveWord(editTextTextMultiLine.text.toString())
                     editTextTextMultiLine.isEnabled = false
+                }
+                R.id.bottomGo -> {
+                    findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
                 }
             }
             true
