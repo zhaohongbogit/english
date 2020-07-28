@@ -4,22 +4,22 @@
 
     <item
         android:id="@+id/bottomDel"
-        android:icon="@android:drawable/ic_menu_delete"
+        android:icon="@android:drawable/ic_delete"
         android:title="Delete"
         app:showAsAction="always" />
+    <item
+        android:id="@+id/bottomSave"
+        android:icon="@android:drawable/ic_lock_lock"
+        android:title="Save"
+        app:showAsAction="always|withText" />
     <item
         android:id="@+id/bottomClear"
         android:icon="@android:drawable/ic_menu_rotate"
         android:title="Clear"
-        app:showAsAction="always" />
-    <item
-        android:id="@+id/bottomSave"
-        android:icon="@android:drawable/ic_menu_save"
-        android:title="Save"
-        app:showAsAction="always|withText" />
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/bottomGo"
         android:icon="@android:drawable/ic_menu_send"
         android:title="Go"
-        app:showAsAction="always|withText" />
+        app:showAsAction="ifRoom" />
 </menu>
