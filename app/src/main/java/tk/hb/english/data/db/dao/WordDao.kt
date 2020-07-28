@@ -2,6 +2,7 @@ package tk.hb.english.data.db.dao
 
 import androidx.room.Dao
 import androidx.room.Query
+import androidx.room.Update
 import tk.hb.english.data.db.entity.WordBean
 
 /**
@@ -9,10 +10,13 @@ import tk.hb.english.data.db.entity.WordBean
  */
 @Dao
 interface WordDao {
-    
+
     @Query("SELECT * FROM WORD")
     fun queryAll(): List<WordBean>
 
     @Query("SELECT * FROM WORD WHERE id=:id")
     fun queryWord(id: Int): WordBean
+
+    @Update
+    fun updateContent(wordBean: WordBean)
 }

@@ -35,6 +35,17 @@ class WordViewModel : ViewModel() {
         return showWord
     }
 
+    /**
+     * 保存修改过的内容
+     */
+    fun saveWord(content: String) {
+        Thread(Runnable {
+            var wordBean: WordBean = showWord.value as WordBean
+            wordBean.content = content
+            HbDataBase.instance.wordDao()?.updateContent()
+        }).start()
+    }
+
     fun getFirstWord() {
         showWord.postValue(
             WordBean(
