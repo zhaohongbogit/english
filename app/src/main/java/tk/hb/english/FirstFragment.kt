@@ -1,5 +1,6 @@
 package tk.hb.english
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -35,15 +36,9 @@ class FirstFragment : Fragment() {
         //底部菜单
         bottomAppBar.setOnMenuItemClickListener {
             when (it.itemId) {
-                R.id.bottomDel -> {
-                    viewModel.delWord()
-                }
-                R.id.bottomClear -> {
-                    viewModel.restoreWord()
-                }
-                R.id.bottomSave -> {
-                    viewModel.saveWord(editTextTextMultiLine.text.toString())
-                }
+                R.id.bottomDel -> delWord()
+                R.id.bottomClear -> restoreWord()
+                R.id.bottomSave -> saveWord()
                 R.id.bottomGo -> {
                     findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
                 }
@@ -73,5 +68,41 @@ class FirstFragment : Fragment() {
         //退出前先保存阅读记录
         viewModel.saveIndex()
         super.onPause()
+    }
+
+    private fun delWord() {
+        showDialog("删除", "确定标记为已学会吗？标记删除后，再次执行clear操作会再次回复。", object : OnDialogListener {
+            override fun onResult() {
+                viewModel.delWord()
+            }
+        })
+    }
+
+    private fun restoreWord() {
+        showDialog("清除", "确定清除所有标记吗？标记清除后，所有数据将变成未标记初始状态。", object : OnDialogListener {
+            override fun onResult() {
+                viewModel.restoreWord()
+            }
+        })
+    }
+
+    private fun saveWord() {
+        showDialog("更新", "确定更新当前词组内容吗？确定更新后，当前修改后的内容会替换词库内容。", object : OnDialogListener {
+            override fun onResult() {
+                viewModel.saveWord(editTextTextMultiLine.text.toString())
+            }
+        })
+    }
+
+    private fun showDialog(title: String, message: String, listener: OnDialogListener) {
+        AlertDialog.Builder(activity).setTitle(title)
+            .setMessage(message)
+            .setNeutralButton("取消") { _, _ -> }
+            .setPositiveButton("确定") { _, _ -> listener.onResult() }
+            .show()
+    }
+
+    private interface OnDialogListener {
+        fun onResult()
     }
 }

@@ -114,9 +114,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center|start"
         android:layout_margin="@dimen/fab_margin"
-        android:background="#D5CD24"
-        app:backgroundTint="#F8F8F5"
-        app:elevation="0dp"
+        app:backgroundTint="#4DF8F8F5"
+        app:elevation="2dp"
         app:srcCompat="@android:drawable/ic_media_previous" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -125,8 +124,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center|end"
         android:layout_margin="@dimen/fab_margin"
-        app:backgroundTint="#F8F8F5"
-        app:elevation="0dp"
+        app:backgroundTint="#4DF8F8F5"
+        app:elevation="2dp"
         app:layout_anchorGravity="end"
         app:srcCompat="@android:drawable/ic_media_next" />
 
