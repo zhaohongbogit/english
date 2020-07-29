@@ -62,8 +62,6 @@
             android:ems="10"
             android:gravity="start|top"
             android:inputType="textMultiLine"
-            android:maxLines="10"
-            android:minLines="5"
             android:padding="8dp"
             android:textColor="#EFE408"
             app:layout_constraintBottom_toBottomOf="parent"

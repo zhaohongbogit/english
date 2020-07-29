@@ -43,7 +43,6 @@ class FirstFragment : Fragment() {
                 }
                 R.id.bottomSave -> {
                     viewModel.saveWord(editTextTextMultiLine.text.toString())
-                    editTextTextMultiLine.isEnabled = false
                 }
                 R.id.bottomGo -> {
                     findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
